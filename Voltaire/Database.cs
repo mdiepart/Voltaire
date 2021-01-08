@@ -1,6 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace Voltaire
 {
@@ -23,7 +24,7 @@ namespace Voltaire
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql("server=127.0.0.1;database=voltairedb;user id=voltaire;password=aJDAK05zHd8cPAuN", x => x.ServerVersion("10.4.17-mariadb"));
+                optionsBuilder.UseMySql($@"{_connection}", x => x.ServerVersion("10.4.17-mariadb"));
             }
         }
 
@@ -33,5 +34,18 @@ namespace Voltaire
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    }
+
+    public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<DataBase>
+    {
+        public DataBase CreateDbContext(string[] args)
+        {
+            var builder = new ConfigurationBuilder()
+             .SetBasePath(Directory.GetCurrentDirectory())
+             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+            var configuration = builder.Build();
+            return new DataBase(configuration.GetConnectionString("sql"));
+        }
     }
 }

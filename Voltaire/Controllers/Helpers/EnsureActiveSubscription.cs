@@ -9,7 +9,7 @@ namespace Voltaire.Controllers.Helpers
     class EnsureActiveSubscription
     {
         public static bool Perform(Guild guild, DataBase db)
-        {
+        {/*
             if (guild.DiscordId == "426894892262752256")
             {
                 return true;
@@ -31,8 +31,9 @@ namespace Voltaire.Controllers.Helpers
                 }
                 guild.SubscriptionId = null;
                 db.SaveChanges();
-            }
-            return QueryForSubscription(guild, db);
+            }*/
+            //return QueryForSubscription(guild, db);
+            return true;
         }
 
         private static bool QueryForSubscription(Guild guild, DataBase db)

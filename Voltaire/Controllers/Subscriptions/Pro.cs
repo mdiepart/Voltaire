@@ -26,7 +26,8 @@ namespace Voltaire.Controllers.Subscriptions
             else
             {
                 var size = context.Guild.MemberCount <= 200 ? "s" : "l";
-                var url = $"https://nminchow.github.io/VoltaireWeb/upgrade?serverId={context.Guild.Id.ToString()}&type={size}";
+                //var url = $"https://nminchow.github.io/VoltaireWeb/upgrade?serverId={context.Guild.Id.ToString()}&type={size}";
+                var url = $"CURRENTLY NOT SUPPORTED (but everybody is pro anyway <3 )";
                 await context.Channel.SendMessageAsync(text: $"Use this URL to upgrade to Volatire Pro: {url}");
             }
         }

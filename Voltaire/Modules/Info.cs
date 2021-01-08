@@ -25,7 +25,7 @@ namespace Voltaire.Modules
         [Summary("display invite link")]
         public async Task InviteLink()
         {
-            await Context.Channel.SendMessageAsync("<https://discordapp.com/oauth2/authorize?client_id=425833927517798420&scope=bot>");
+            await Context.Channel.SendMessageAsync("<https://discord.com/oauth2/authorize?client_id=781621894511853568&scope=bot>");
         }
 
         [Command("faq", RunMode = RunMode.Async)]
